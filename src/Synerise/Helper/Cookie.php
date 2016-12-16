@@ -152,6 +152,11 @@ class Cookie
         if (!isset(self::$_instance)) {
             self::$_instance = new $class($cookie, $config);
         }
+
+        if(count($cookie)) {
+            self::$_instance->setCookiesData((empty($cookie) && isset($_COOKIE)) ? $_COOKIE : $cookie);
+        }
+
         return self::$_instance;
     }
 
